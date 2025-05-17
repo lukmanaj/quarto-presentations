@@ -1,0 +1,138 @@
+---
+title: "A Hands-on Dive into Kaggle's Resources"
+author: "Lukman Aliyu"
+date: 2025-02-02
+institute: HausaNLP
+format:
+  revealjs: 
+    theme: league
+    slide-number: true
+---
+
+## Introduction
+
+- **Welcome & Overview**
+- What is Kaggle?
+- Why should you use Kaggle?
+- Structure of this session
+
+---
+
+## What is Kaggle?
+
+- Kaggle is a platform for data science and machine learning.
+- It offers datasets, competitions, notebooks, models, and a community.
+- Used by researchers, practitioners, and learners.
+
+---
+
+## Getting Started with Kaggle
+
+- Creating an account
+- Navigating the Kaggle homepage
+- Exploring the menu: **Competitions, Datasets, Code, Discussions, Courses, Models**
+
+---
+
+## Kaggle Datasets
+
+- Public datasets for ML & AI projects.
+- **Hands-on:** Searching for datasets.
+- Dataset structure: metadata, preview, and downloading.
+
+---
+
+## Kaggle Competitions
+
+- What are Kaggle competitions?
+- Types: Featured, Research, Playground.
+- **Hands-on:** Exploring an ongoing competition.
+- Understanding evaluation metrics and submissions.
+
+---
+
+## Kaggle Notebooks (Kernels)
+
+- Introduction to Kaggle Notebooks
+- Running code in the cloud (Python, R, SQL)
+- **Hands-on:** Creating a Kaggle Notebook
+- Accessing GPUs & TPUs
+- Versioning & Sharing Notebooks
+
+---
+
+## Kaggle Models
+
+- Kaggle provides pre-trained models like LLaMA and Cohere's Command R.
+- How to use pre-trained models in your projects.
+- **Hands-on:** Deploying a model from Kaggle’s Model Hub.
+- Fine-tuning models for specific tasks.
+
+---
+
+## Kaggle Discussion & Community
+
+- How to engage with the Kaggle community.
+- Asking questions & answering.
+- Finding notebooks & insights from others.
+
+---
+
+## Kaggle Courses & Certifications
+
+- Free ML & AI courses on Kaggle Learn.
+- Popular courses: Python, Pandas, Deep Learning.
+- **Hands-on:** Enrolling in a course and trying an exercise.
+
+---
+
+## Best Practices for Kaggle Success
+
+- How to learn from top competitors.
+- Building a portfolio using Kaggle.
+- Collaborating with others.
+- Leveraging Kaggle for career growth.
+
+---
+
+## Hands-on Project: Predicting Titanic Survivals
+
+- **Step 1:** Loading the dataset
+- **Step 2:** Exploratory Data Analysis (EDA)
+- **Step 3:** Building a simple model
+- **Step 4:** Submitting predictions
+- **Step 5:** Analyzing leaderboard results
+
+---
+
+## Conclusion
+
+- Recap of key takeaways
+- How to continue learning & growing on Kaggle
+- Final Q&A session
+
+---
+
+## Thank You!
+
+- **[Connect](https://lukmanaj.github.io/)** with me: 
+
+
+
+--- 
+
+## Questions & Discussions
+
+
+
+---
+
+## Resources
+
+- [How to use kaggle notebooks](https://www.kaggle.com/docs/notebooks)
+- [Llama 3.2 Notebook](https://www.kaggle.com/code/lukmanaliyuj/llama-3-2-multimodal-prompting)
+- [Deep Learning with PyTorch Fellowship Notebook](https://www.kaggle.com/code/lukmanaliyuj/african-wild-life-classification)
+- [DeepSeek Finetuning Notebook](https://www.kaggle.com/code/lukmanaliyuj/fine-tuning-deepseek-r1-reasoning-model)
+- [5-Day Gen AI Intensive Course with Google Learn Guide](https://www.kaggle.com/learn-guide/5-day-genai)
+- [Titanic - Machine Learning from Disaster](https://www.kaggle.com/competitions/titanic/data)
+

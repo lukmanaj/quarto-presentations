@@ -1,0 +1,4 @@
+- source: index.qmd
+  quarto-pub:
+    - id: 178ecf6f-8a3f-4860-81b8-9d4003ae10e9
+      url: https://lukmanaj.quarto.pub/introduction-to-numpy

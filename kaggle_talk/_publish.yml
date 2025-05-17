@@ -1,0 +1,4 @@
+- source: index.qmd
+  quarto-pub:
+    - id: 87c0bb91-96d9-43a2-a8de-6a52d1eda16b
+      url: 'https://lukmanaj.quarto.pub/a-hands-on-dive-into-kaggles-resources'

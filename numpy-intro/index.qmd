@@ -1,0 +1,222 @@
+---
+title: "Introduction to NumPy"
+author: "Lukman J Aliyu"
+institute: "Arewa Data Science Academy"
+format:
+  revealjs:
+    theme: solarized
+    slide-number: true
+    code-line-numbers: true
+    chalkboard: true
+    code-fold: false
+    code-overflow: wrap
+jupyter: python3
+---
+
+
+## Welcome!
+
+- **Topic:** Introduction to NumPy
+- **Duration:** 1 hour
+- **Audience:** Beginner to intermediate Python users
+
+---
+
+## Objectives
+
+By the end of this lecture, you will:
+
+- Understand why NumPy is essential for numerical computing
+- Know the limitations of Python lists
+- Learn to use NumPy arrays
+- Perform vectorized operations
+- Briefly contrast with Julia's approach to vectorization
+
+---
+
+## Why Not Pure Python Lists?
+
+```{python}
+#| echo: true
+
+# Element-wise addition with lists
+x = [1, 2, 3]
+y = [4, 5, 6]
+z = [a + b for a, b in zip(x, y)]
+print(z)
+```
+
+- List comprehensions can get messy
+- No type enforcement
+- Poor performance for large-scale data
+
+---
+
+## Why NumPy?
+
+- Multidimensional array object
+- Vectorized operations
+- Broadcasting
+- Memory efficiency and performance
+- Backbone of scientific Python
+
+---
+
+## Importing NumPy
+
+```{python}
+#| echo: true
+import numpy as np
+```
+
+---
+
+## Creating Arrays
+
+```{python}
+#| echo: true
+print(f"using np.array: {np.array([1, 2, 3])}")
+print(f"Initiating using np.zeros: {np.zeros((2, 3))}")
+print(f"using np.ones: {np.ones(5)}")
+print(f"Initiating an identity matrix: {np.eye(3)}")
+print(f"using np.arange: {np.arange(0, 10, 2)}")
+print(f"using np.linspace: {np.linspace(0, 1, 5)}")
+```
+
+---
+
+## Array Attributes
+
+```{python}
+#| echo: true
+x = np.array([[1, 2], [3, 4]])
+print(x.shape)      
+print(x.ndim)       
+print(x.dtype)     
+```
+
+---
+
+## Vectorized Operations
+
+```{python}
+#| echo: true
+x = np.array([1, 2, 3])
+y = np.array([4, 5, 6])
+print(x + y)
+print(x * y)
+print(x ** 2)
+```
+
+---
+
+## Broadcasting
+
+```{python}
+#| echo: true
+x = np.array([[1], [2], [3]])
+y = np.array([10, 20, 30])
+print(x + y)
+```
+
+---
+
+## Comparison with Julia
+
+```julia
+x = [1, 2, 3]
+y = [4, 5, 6]
+z = x .+ y
+println(z)
+```
+
+- Julia supports **dot syntax** for element-wise ops
+- NumPy uses **vectorized ufuncs**
+
+---
+
+## Indexing and Slicing
+
+```{python}
+#| echo: true
+x = np.array([[1, 2, 3], [4, 5, 6]])
+print(x[0, 1])  
+print(x[:, 1]) 
+print(x[1, :])  
+```
+
+---
+
+## Boolean Indexing
+
+```{python}
+#| echo: true
+x = np.array([1, 2, 3, 4, 5])
+print(x[x > 2])
+```
+
+---
+
+## Aggregations
+
+```{python}
+#| echo: true
+x = np.array([[1, 2], [3, 4]])
+print(x.sum())
+print(x.mean())
+print(x.max(axis=0))
+```
+
+---
+
+## Linear Algebra
+
+```{python}
+#| echo: true
+x = np.array([[1, 2], [3, 4]])
+y = np.linalg.inv(x)
+print(y)
+print(np.dot(x, y))
+```
+
+---
+
+## Random Numbers
+
+```{python}
+#| echo: true
+np.random.seed(0)
+print(np.random.rand(3))
+print(np.random.randn(2, 2))
+print(np.random.randint(0, 10, size=5))
+```
+
+---
+
+## Summary
+
+- NumPy arrays are fast, efficient, and powerful
+- Vectorization replaces explicit loops
+- Broadcasting makes math simpler
+- Comparisons with Julia show similar design patterns
+
+---
+
+## Try it Yourself!
+
+- Replace Python list code with NumPy arrays
+- Experiment with slicing, broadcasting, and aggregation
+
+---
+
+## Questions?
+
+Ask away or let’s do a few exercises together!
+
+---
+
+## Thank You
+
+- [NumPy Documentation](https://numpy.org/doc/)
+- [Julia Docs](https://docs.julialang.org/)
+- Continue practicing!

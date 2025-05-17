@@ -1,0 +1,140 @@
+---
+title: "Building a Professional GitHub Profile README"
+format:
+  revealjs: 
+    theme: serif
+author: Lukman Aliyu
+date: '2024-11-10'
+---
+
+## Welcome!
+### Why is a GitHub Profile README important?
+
+- A unique **README** helps you stand out as a developer or professional.
+- It serves as your **portfolio** or **first impression** on your GitHub profile.
+- Highlights your:
+  - Skills & projects
+  - Achievements
+  - Contact information
+
+
+
+## Learning Outcomes
+
+By the end of this session, you will:
+
+1. Understand the basics of a GitHub Profile README.
+2. Learn how to use **Markdown** to customize your profile.
+3. Utilize **ProfileMe.dev** to simplify the creation process.
+
+
+## Anatomy of a GitHub Profile README {.scrollable}
+
+1. **Introduction**
+   - A brief "About Me."
+   - Highlight your expertise or interests.
+
+2. **Skills & Technologies**
+   - Use badges or simple lists to display technical skills.
+
+3. **Portfolio/Projects**
+   - Showcase selected projects with links.
+
+4. **Achievements**
+   - Certifications, hackathon wins, or notable contributions.
+
+5. **Contact Information**
+   - Include email, LinkedIn, or other links.
+
+6. **Fun/Optional Sections**
+   - Hobbies, fun facts, or GitHub stats.
+
+
+
+## Markdown Basics
+
+### What is Markdown?
+
+- A lightweight markup language.
+- Used to create formatted text using simple symbols.
+
+## Essential Syntax {.scrollable}
+
+```markdown
+# Heading 1
+## Heading 2
+### Heading 3
+
+**Bold Text**  
+*Italic Text*  
+
+- Bullet list
+1. Numbered list
+
+[Link Text](https://example.com)
+
+![Image Alt Text](image-url)
+
+```
+
+## Example
+
+```markdown
+# Hi, I'm Lukman 👋
+- 🌱 I’m currently learning Machine Learning
+- 💬 Ask me about Data Science
+- 📫 How to reach me: [My LinkedIn](https://linkedin.com/in/lukman-a-j)
+```
+
+
+## Using ProfileMe.dev {.scrollable}
+
+### What is ProfileMe.dev?
+- A free tool to generate professional GitHub profile README templates.
+- Customize your profile README with a user-friendly interface.
+
+
+## Steps to Use ProfileMe.dev
+- Go to ProfileMe.dev.
+- Customize your profile:
+- Add sections like "About Me," skills, projects, etc.
+- Choose pre-designed styles and icons.
+- Generate Markdown by clicking "Copy Markdown."
+- Paste the Markdown into your README.md file.
+
+
+
+## Hands-On Exercise {.scrollable}
+- Visit ProfileMe.dev.
+- Complete the following:
+- Add an Introduction.
+- List at least 5 skills or technologies.
+- Copy the Markdown and create a README.md file in your GitHub repository.
+- Copy your README.md into your GitHub profile repository:
+- Navigate to https://github.com/<your-username>.
+- Create a new repository named <your-username>.
+- Add the README.md file to this repository.
+- Preview the profile on GitHub.
+- Update as needed.
+
+
+
+## Tips for a Stellar Profile
+
+- Keep it simple and professional.
+- Use icons and badges sparingly.
+- Update regularly to reflect new projects and skills.
+- Showcase your personality without overloading.
+
+## Resources
+- [Markdown Cheatsheet](https://www.markdownguide.org/cheat-sheet/)
+- [ProfileMe.dev](https://www.profileme.dev/)
+
+
+
+## Questions & Discussion
+
+- Thank you for your attention!
+- Let's create your standout GitHub profile together.
+- Questions?
+
