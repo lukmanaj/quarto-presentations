@@ -56,10 +56,4 @@ For collaboration or feedback:
 
 ---
 
-## License
-
-All content in this repository is shared under the **Creative Commons Attribution 4.0 International (CC BY 4.0)** license, unless otherwise noted.
-
----
-
 > _“Knowledge increases by sharing but not by saving.”_
