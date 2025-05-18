@@ -1,0 +1,4 @@
+- source: index.qmd
+  quarto-pub:
+    - id: 55c7766a-b69d-4991-a40e-66f81dae544d
+      url: https://lukmanaj.quarto.pub/introduction-to-pandas

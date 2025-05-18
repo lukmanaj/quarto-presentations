@@ -1,0 +1,212 @@
+---
+title: "Introduction to Pandas"
+author: "Lukman J Aliyu"
+date: "2025-05-18"
+institute: "Arewa Data Science Academy"
+format:
+  revealjs:
+    theme: serif
+    slide-number: true
+    code-line-numbers: true
+    chalkboard: true
+    code-fold: false
+    code-overflow: wrap
+jupyter: python3
+---
+
+## Welcome!
+
+- **Topic:** Introduction to Pandas
+- **Duration:** 1 hour
+- **Audience:** Beginner to intermediate Python users
+
+---
+
+## Objectives
+
+By the end of this session, you will:
+
+- Understand the relationship between Pandas and NumPy
+- Learn how to create and load DataFrames
+- Perform essential DataFrame operations
+- Visualize data with Pandas
+
+---
+
+## Why Pandas?
+
+- Built on top of NumPy
+- Provides powerful `DataFrame` and `Series` structures
+- Intuitive data manipulation
+- Supports I/O from CSV, Excel, SQL, and more
+- Commonly used in data science, finance, and research
+
+---
+
+## Importing Pandas and NumPy
+
+```{python}
+#| echo: true
+
+import pandas as pd
+import numpy as np
+```
+
+---
+
+## Creating a DataFrame from NumPy
+
+```{python}
+#| echo: true
+
+data = np.random.randn(5, 3)
+df = pd.DataFrame(data, columns=["A", "B", "C"])
+print(df)
+```
+
+---
+
+## Creating a DataFrame from Dictionary
+
+```{python}
+#| echo: true
+
+data = {
+    "Name": ["Alice", "Bob", "Charlie", "Diana"],
+    "Age": [24, 27, 22, 32],
+    "City": ["Lagos", "Abuja", "Kano", "Ibadan"]
+}
+df = pd.DataFrame(data)
+print(df)
+```
+
+---
+
+## Reading a CSV File
+
+```python
+
+#
+df = pd.read_csv("data.csv")  
+print(df.head())
+```
+
+---
+
+## Simulating a DataFrame for Exploration
+
+```{python}
+#| echo: true
+df = pd.DataFrame({
+    "student_id": np.arange(1, 6),
+    "name": ["Ali", "Bola", "Chi", "Dayo", "Ella"],
+    "math": np.random.randint(60, 100, size=5),
+    "english": np.random.randint(50, 95, size=5),
+    "science": np.random.randint(55, 100, size=5)
+})
+print(df)
+```
+
+---
+
+## Accessing Columns and Rows
+
+```{python}
+#| echo: true
+
+print(df["math"])
+print(df.loc[0])
+print(df.iloc[1:4])
+```
+
+---
+
+## Basic Statistics
+
+```{python}
+#| echo: true
+
+print(df.describe())
+print(df.mean(numeric_only=True))
+print(df["english"].max())
+```
+
+---
+
+## Filtering Data
+
+```{python}
+#| echo: true
+
+print(df[df["math"] > 80])
+print(df[(df["math"] > 80) & (df["english"] > 70)])
+```
+
+---
+
+## Adding and Dropping Columns
+
+```{python}
+#| echo: true
+
+df["total"] = df["math"] + df["english"] + df["science"]
+df.drop("student_id", axis=1, inplace=True)
+print(df)
+```
+
+---
+
+## Sorting and Grouping
+
+```{python}
+#| echo: true
+
+print(df.sort_values("total", ascending=False))
+print(df.groupby("name")["math"].mean())
+```
+
+---
+
+## Plotting with Pandas {.scrollable}
+
+```{python}
+#| echo: true
+
+import matplotlib.pyplot as plt
+
+df.set_index("name")[["math", "english", "science"]].plot(kind="bar")
+plt.title("Scores by Subject")
+plt.ylabel("Score")
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()
+```
+
+---
+
+## Summary
+
+- Pandas builds on NumPy for flexible tabular data handling
+- DataFrames make data manipulation intuitive
+- Use filtering, grouping, and plotting for quick insights
+
+---
+
+## Try it Yourself!
+
+- Create your own DataFrame
+- Explore with filters and plots
+- Practice `groupby`, `mean`, and `plot` functions
+
+---
+
+## Questions?
+
+Let's clarify concepts or try more examples live!
+
+---
+
+## Thank You
+
+- [Pandas Documentation](https://pandas.pydata.org/)
+- Keep practicing and analyzing data!
