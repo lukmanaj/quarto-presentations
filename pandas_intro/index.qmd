@@ -1,7 +1,7 @@
 ---
 title: "Introduction to Pandas"
 author: "Lukman J Aliyu"
-date: "2025-05-18"
+date: "2025-05-24"
 institute: "Arewa Data Science Academy"
 format:
   revealjs:
@@ -43,16 +43,38 @@ By the end of this session, you will:
 
 ---
 
+## Installing Pandas
+
+```python
+
+# We can install in the terminal without the exclamation mark
+!pip install pandas 
+
+```
+
+---
+
 ## Importing Pandas and NumPy
 
 ```{python}
 #| echo: true
-
+# import both we mostly use both together
 import pandas as pd
 import numpy as np
 ```
 
 ---
+
+## Creating a Series using NumPy
+
+```{python}
+#| echo: true
+ser = pd.Series(np.random.rand(7))
+ser
+```
+
+---
+
 
 ## Creating a DataFrame from NumPy
 
@@ -61,7 +83,7 @@ import numpy as np
 
 data = np.random.randn(5, 3)
 df = pd.DataFrame(data, columns=["A", "B", "C"])
-print(df)
+df
 ```
 
 ---
@@ -77,7 +99,7 @@ data = {
     "City": ["Lagos", "Abuja", "Kano", "Ibadan"]
 }
 df = pd.DataFrame(data)
-print(df)
+df
 ```
 
 ---
@@ -88,12 +110,12 @@ print(df)
 
 #
 df = pd.read_csv("data.csv")  
-print(df.head())
+df.head()
 ```
 
 ---
 
-## Simulating a DataFrame for Exploration
+## Simulating a DataFrame for Exploration {.scrollable}
 
 ```{python}
 #| echo: true
@@ -104,7 +126,7 @@ df = pd.DataFrame({
     "english": np.random.randint(50, 95, size=5),
     "science": np.random.randint(55, 100, size=5)
 })
-print(df)
+df
 ```
 
 ---
@@ -151,7 +173,7 @@ print(df[(df["math"] > 80) & (df["english"] > 70)])
 
 df["total"] = df["math"] + df["english"] + df["science"]
 df.drop("student_id", axis=1, inplace=True)
-print(df)
+df
 ```
 
 ---

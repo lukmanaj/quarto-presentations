@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<script src="index_files/libs/clipboard/clipboard.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="index_files/libs/clipboard/clipboard.min.js"></script>
 <script src="index_files/libs/quarto-html/tabby.min.js"></script>
 <script src="index_files/libs/quarto-html/popper.min.js"></script>
 <script src="index_files/libs/quarto-html/tippy.umd.min.js"></script>
@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.7.31">
 
   <meta name="author" content="Lukman J Aliyu">
-  <meta name="dcterms.date" content="2025-05-18">
+  <meta name="dcterms.date" content="2025-05-24">
   <title>Introduction to Pandas</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -190,6 +190,9 @@
       margin-right: 0; 
     }
   </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+  
+  <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -209,7 +212,7 @@ Lukman J Aliyu
     </div>
 </div>
 
-  <p class="date">2025-05-18</p>
+  <p class="date">2025-05-24</p>
 </section>
 <section id="welcome" class="slide level2">
 <h2>Welcome!</h2>
@@ -239,194 +242,452 @@ Lukman J Aliyu
 <li>Commonly used in data science, finance, and research</li>
 </ul>
 </section>
+<section id="installing-pandas" class="slide level2">
+<h2>Installing Pandas</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href=""></a></span>
+<span id="cb1-2"><a href=""></a><span class="co"># We can install in the terminal without the exclamation mark</span></span>
+<span id="cb1-3"><a href=""></a><span class="op">!</span>pip install pandas </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
 <section id="importing-pandas-and-numpy" class="slide level2">
 <h2>Importing Pandas and NumPy</h2>
-<div id="3810ebbe" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href=""></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-2"><a href=""></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="43bbd4e7" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href=""></a><span class="co"># import both we mostly use both together</span></span>
+<span id="cb2-2"><a href=""></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-3"><a href=""></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="creating-a-series-using-numpy" class="slide level2">
+<h2>Creating a Series using NumPy</h2>
+<div id="828e71d9" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href=""></a>ser <span class="op">=</span> pd.Series(np.random.rand(<span class="dv">7</span>))</span>
+<span id="cb3-2"><a href=""></a>ser</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="24">
+<pre><code>0    0.280215
+1    0.944777
+2    0.138353
+3    0.848174
+4    0.042395
+5    0.192812
+6    0.168803
+dtype: float64</code></pre>
+</div>
 </div>
 </section>
 <section id="creating-a-dataframe-from-numpy" class="slide level2">
 <h2>Creating a DataFrame from NumPy</h2>
-<div id="4d2c827b" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href=""></a>data <span class="op">=</span> np.random.randn(<span class="dv">5</span>, <span class="dv">3</span>)</span>
-<span id="cb2-2"><a href=""></a>df <span class="op">=</span> pd.DataFrame(data, columns<span class="op">=</span>[<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>])</span>
-<span id="cb2-3"><a href=""></a><span class="bu">print</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>          A         B         C
-0  1.287399 -2.443826 -0.255559
-1 -0.110534 -0.222150 -0.130697
-2 -0.159129 -0.247860  0.582927
-3  0.688905 -0.639844  0.254005
-4  0.516802 -0.566226  0.934417</code></pre>
+<div id="9e06011d" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href=""></a>data <span class="op">=</span> np.random.randn(<span class="dv">5</span>, <span class="dv">3</span>)</span>
+<span id="cb5-2"><a href=""></a>df <span class="op">=</span> pd.DataFrame(data, columns<span class="op">=</span>[<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>])</span>
+<span id="cb5-3"><a href=""></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="25">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+
+<table class="dataframe caption-top" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header" style="text-align: right;">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">A</th>
+<th data-quarto-table-cell-role="th">B</th>
+<th data-quarto-table-cell-role="th">C</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>0.615985</td>
+<td>-1.290213</td>
+<td>0.820608</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>0.279202</td>
+<td>0.230257</td>
+<td>-1.261187</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>0.328259</td>
+<td>0.007165</td>
+<td>2.235153</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>0.196551</td>
+<td>1.186825</td>
+<td>1.213580</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>-0.859540</td>
+<td>-0.422497</td>
+<td>0.201555</td>
+</tr>
+</tbody>
+</table>
+
+</div>
 </div>
 </div>
 </section>
 <section id="creating-a-dataframe-from-dictionary" class="slide level2">
 <h2>Creating a DataFrame from Dictionary</h2>
-<div id="4dc14185" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href=""></a>data <span class="op">=</span> {</span>
-<span id="cb4-2"><a href=""></a>    <span class="st">"Name"</span>: [<span class="st">"Alice"</span>, <span class="st">"Bob"</span>, <span class="st">"Charlie"</span>, <span class="st">"Diana"</span>],</span>
-<span id="cb4-3"><a href=""></a>    <span class="st">"Age"</span>: [<span class="dv">24</span>, <span class="dv">27</span>, <span class="dv">22</span>, <span class="dv">32</span>],</span>
-<span id="cb4-4"><a href=""></a>    <span class="st">"City"</span>: [<span class="st">"Lagos"</span>, <span class="st">"Abuja"</span>, <span class="st">"Kano"</span>, <span class="st">"Ibadan"</span>]</span>
-<span id="cb4-5"><a href=""></a>}</span>
-<span id="cb4-6"><a href=""></a>df <span class="op">=</span> pd.DataFrame(data)</span>
-<span id="cb4-7"><a href=""></a><span class="bu">print</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>      Name  Age    City
-0    Alice   24   Lagos
-1      Bob   27   Abuja
-2  Charlie   22    Kano
-3    Diana   32  Ibadan</code></pre>
+<div id="f60a1544" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href=""></a>data <span class="op">=</span> {</span>
+<span id="cb6-2"><a href=""></a>    <span class="st">"Name"</span>: [<span class="st">"Alice"</span>, <span class="st">"Bob"</span>, <span class="st">"Charlie"</span>, <span class="st">"Diana"</span>],</span>
+<span id="cb6-3"><a href=""></a>    <span class="st">"Age"</span>: [<span class="dv">24</span>, <span class="dv">27</span>, <span class="dv">22</span>, <span class="dv">32</span>],</span>
+<span id="cb6-4"><a href=""></a>    <span class="st">"City"</span>: [<span class="st">"Lagos"</span>, <span class="st">"Abuja"</span>, <span class="st">"Kano"</span>, <span class="st">"Ibadan"</span>]</span>
+<span id="cb6-5"><a href=""></a>}</span>
+<span id="cb6-6"><a href=""></a>df <span class="op">=</span> pd.DataFrame(data)</span>
+<span id="cb6-7"><a href=""></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="26">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+
+<table class="dataframe caption-top" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header" style="text-align: right;">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Name</th>
+<th data-quarto-table-cell-role="th">Age</th>
+<th data-quarto-table-cell-role="th">City</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Alice</td>
+<td>24</td>
+<td>Lagos</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Bob</td>
+<td>27</td>
+<td>Abuja</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Charlie</td>
+<td>22</td>
+<td>Kano</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>Diana</td>
+<td>32</td>
+<td>Ibadan</td>
+</tr>
+</tbody>
+</table>
+
+</div>
 </div>
 </div>
 </section>
 <section id="reading-a-csv-file" class="slide level2">
 <h2>Reading a CSV File</h2>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href=""></a></span>
-<span id="cb6-2"><a href=""></a><span class="co">#</span></span>
-<span id="cb6-3"><a href=""></a>df <span class="op">=</span> pd.read_csv(<span class="st">"data.csv"</span>)  </span>
-<span id="cb6-4"><a href=""></a><span class="bu">print</span>(df.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href=""></a></span>
+<span id="cb7-2"><a href=""></a><span class="co">#</span></span>
+<span id="cb7-3"><a href=""></a>df <span class="op">=</span> pd.read_csv(<span class="st">"data.csv"</span>)  </span>
+<span id="cb7-4"><a href=""></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="simulating-a-dataframe-for-exploration" class="slide level2">
+<section id="simulating-a-dataframe-for-exploration" class="slide level2 scrollable">
 <h2>Simulating a DataFrame for Exploration</h2>
-<div id="0c3e1f02" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href=""></a>df <span class="op">=</span> pd.DataFrame({</span>
-<span id="cb7-2"><a href=""></a>    <span class="st">"student_id"</span>: np.arange(<span class="dv">1</span>, <span class="dv">6</span>),</span>
-<span id="cb7-3"><a href=""></a>    <span class="st">"name"</span>: [<span class="st">"Ali"</span>, <span class="st">"Bola"</span>, <span class="st">"Chi"</span>, <span class="st">"Dayo"</span>, <span class="st">"Ella"</span>],</span>
-<span id="cb7-4"><a href=""></a>    <span class="st">"math"</span>: np.random.randint(<span class="dv">60</span>, <span class="dv">100</span>, size<span class="op">=</span><span class="dv">5</span>),</span>
-<span id="cb7-5"><a href=""></a>    <span class="st">"english"</span>: np.random.randint(<span class="dv">50</span>, <span class="dv">95</span>, size<span class="op">=</span><span class="dv">5</span>),</span>
-<span id="cb7-6"><a href=""></a>    <span class="st">"science"</span>: np.random.randint(<span class="dv">55</span>, <span class="dv">100</span>, size<span class="op">=</span><span class="dv">5</span>)</span>
-<span id="cb7-7"><a href=""></a>})</span>
-<span id="cb7-8"><a href=""></a><span class="bu">print</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>   student_id  name  math  english  science
-0           1   Ali    63       63       77
-1           2  Bola    79       80       69
-2           3   Chi    63       66       61
-3           4  Dayo    95       52       96
-4           5  Ella    70       56       72</code></pre>
+<div id="d97fe221" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href=""></a>df <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb8-2"><a href=""></a>    <span class="st">"student_id"</span>: np.arange(<span class="dv">1</span>, <span class="dv">6</span>),</span>
+<span id="cb8-3"><a href=""></a>    <span class="st">"name"</span>: [<span class="st">"Ali"</span>, <span class="st">"Bola"</span>, <span class="st">"Chi"</span>, <span class="st">"Dayo"</span>, <span class="st">"Ella"</span>],</span>
+<span id="cb8-4"><a href=""></a>    <span class="st">"math"</span>: np.random.randint(<span class="dv">60</span>, <span class="dv">100</span>, size<span class="op">=</span><span class="dv">5</span>),</span>
+<span id="cb8-5"><a href=""></a>    <span class="st">"english"</span>: np.random.randint(<span class="dv">50</span>, <span class="dv">95</span>, size<span class="op">=</span><span class="dv">5</span>),</span>
+<span id="cb8-6"><a href=""></a>    <span class="st">"science"</span>: np.random.randint(<span class="dv">55</span>, <span class="dv">100</span>, size<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb8-7"><a href=""></a>})</span>
+<span id="cb8-8"><a href=""></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="27">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+
+<table class="dataframe caption-top" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header" style="text-align: right;">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">student_id</th>
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">math</th>
+<th data-quarto-table-cell-role="th">english</th>
+<th data-quarto-table-cell-role="th">science</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>1</td>
+<td>Ali</td>
+<td>73</td>
+<td>54</td>
+<td>64</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>2</td>
+<td>Bola</td>
+<td>81</td>
+<td>94</td>
+<td>60</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>3</td>
+<td>Chi</td>
+<td>63</td>
+<td>61</td>
+<td>66</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>4</td>
+<td>Dayo</td>
+<td>86</td>
+<td>74</td>
+<td>81</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>5</td>
+<td>Ella</td>
+<td>96</td>
+<td>78</td>
+<td>62</td>
+</tr>
+</tbody>
+</table>
+
+</div>
 </div>
 </div>
 </section>
 <section id="accessing-columns-and-rows" class="slide level2">
 <h2>Accessing Columns and Rows</h2>
-<div id="00b24fd8" class="cell" data-execution_count="5">
+<div id="0e119a4e" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href=""></a><span class="bu">print</span>(df[<span class="st">"math"</span>])</span>
 <span id="cb9-2"><a href=""></a><span class="bu">print</span>(df.loc[<span class="dv">0</span>])</span>
 <span id="cb9-3"><a href=""></a><span class="bu">print</span>(df.iloc[<span class="dv">1</span>:<span class="dv">4</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>0    63
-1    79
+<pre><code>0    73
+1    81
 2    63
-3    95
-4    70
+3    86
+4    96
 Name: math, dtype: int64
 student_id      1
 name          Ali
-math           63
-english        63
-science        77
+math           73
+english        54
+science        64
 Name: 0, dtype: object
    student_id  name  math  english  science
-1           2  Bola    79       80       69
-2           3   Chi    63       66       61
-3           4  Dayo    95       52       96</code></pre>
+1           2  Bola    81       94       60
+2           3   Chi    63       61       66
+3           4  Dayo    86       74       81</code></pre>
 </div>
 </div>
 </section>
 <section id="basic-statistics" class="slide level2">
 <h2>Basic Statistics</h2>
-<div id="3487bc41" class="cell" data-execution_count="6">
+<div id="036b0fea" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href=""></a><span class="bu">print</span>(df.describe())</span>
 <span id="cb11-2"><a href=""></a><span class="bu">print</span>(df.mean(numeric_only<span class="op">=</span><span class="va">True</span>))</span>
 <span id="cb11-3"><a href=""></a><span class="bu">print</span>(df[<span class="st">"english"</span>].<span class="bu">max</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       student_id       math    english    science
 count    5.000000   5.000000   5.000000   5.000000
-mean     3.000000  74.000000  63.400000  75.000000
-std      1.581139  13.453624  10.807405  13.095801
-min      1.000000  63.000000  52.000000  61.000000
-25%      2.000000  63.000000  56.000000  69.000000
-50%      3.000000  70.000000  63.000000  72.000000
-75%      4.000000  79.000000  66.000000  77.000000
-max      5.000000  95.000000  80.000000  96.000000
+mean     3.000000  79.800000  72.200000  66.600000
+std      1.581139  12.557866  15.562776   8.354639
+min      1.000000  63.000000  54.000000  60.000000
+25%      2.000000  73.000000  61.000000  62.000000
+50%      3.000000  81.000000  74.000000  64.000000
+75%      4.000000  86.000000  78.000000  66.000000
+max      5.000000  96.000000  94.000000  81.000000
 student_id     3.0
-math          74.0
-english       63.4
-science       75.0
+math          79.8
+english       72.2
+science       66.6
 dtype: float64
-80</code></pre>
+94</code></pre>
 </div>
 </div>
 </section>
 <section id="filtering-data" class="slide level2">
 <h2>Filtering Data</h2>
-<div id="be722ddc" class="cell" data-execution_count="7">
+<div id="c716661a" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href=""></a><span class="bu">print</span>(df[df[<span class="st">"math"</span>] <span class="op">&gt;</span> <span class="dv">80</span>])</span>
 <span id="cb13-2"><a href=""></a><span class="bu">print</span>(df[(df[<span class="st">"math"</span>] <span class="op">&gt;</span> <span class="dv">80</span>) <span class="op">&amp;</span> (df[<span class="st">"english"</span>] <span class="op">&gt;</span> <span class="dv">70</span>)])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   student_id  name  math  english  science
-3           4  Dayo    95       52       96
-Empty DataFrame
-Columns: [student_id, name, math, english, science]
-Index: []</code></pre>
+1           2  Bola    81       94       60
+3           4  Dayo    86       74       81
+4           5  Ella    96       78       62
+   student_id  name  math  english  science
+1           2  Bola    81       94       60
+3           4  Dayo    86       74       81
+4           5  Ella    96       78       62</code></pre>
 </div>
 </div>
 </section>
 <section id="adding-and-dropping-columns" class="slide level2">
 <h2>Adding and Dropping Columns</h2>
-<div id="92cc5821" class="cell" data-execution_count="8">
+<div id="321cd3a8" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href=""></a>df[<span class="st">"total"</span>] <span class="op">=</span> df[<span class="st">"math"</span>] <span class="op">+</span> df[<span class="st">"english"</span>] <span class="op">+</span> df[<span class="st">"science"</span>]</span>
 <span id="cb15-2"><a href=""></a>df.drop(<span class="st">"student_id"</span>, axis<span class="op">=</span><span class="dv">1</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb15-3"><a href=""></a><span class="bu">print</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>   name  math  english  science  total
-0   Ali    63       63       77    203
-1  Bola    79       80       69    228
-2   Chi    63       66       61    190
-3  Dayo    95       52       96    243
-4  Ella    70       56       72    198</code></pre>
+<span id="cb15-3"><a href=""></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="31">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+
+<table class="dataframe caption-top" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header" style="text-align: right;">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">math</th>
+<th data-quarto-table-cell-role="th">english</th>
+<th data-quarto-table-cell-role="th">science</th>
+<th data-quarto-table-cell-role="th">total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Ali</td>
+<td>73</td>
+<td>54</td>
+<td>64</td>
+<td>191</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Bola</td>
+<td>81</td>
+<td>94</td>
+<td>60</td>
+<td>235</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Chi</td>
+<td>63</td>
+<td>61</td>
+<td>66</td>
+<td>190</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>Dayo</td>
+<td>86</td>
+<td>74</td>
+<td>81</td>
+<td>241</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>Ella</td>
+<td>96</td>
+<td>78</td>
+<td>62</td>
+<td>236</td>
+</tr>
+</tbody>
+</table>
+
+</div>
 </div>
 </div>
 </section>
 <section id="sorting-and-grouping" class="slide level2">
 <h2>Sorting and Grouping</h2>
-<div id="6232a0bb" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href=""></a><span class="bu">print</span>(df.sort_values(<span class="st">"total"</span>, ascending<span class="op">=</span><span class="va">False</span>))</span>
-<span id="cb17-2"><a href=""></a><span class="bu">print</span>(df.groupby(<span class="st">"name"</span>)[<span class="st">"math"</span>].mean())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="7b6e0cd8" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href=""></a><span class="bu">print</span>(df.sort_values(<span class="st">"total"</span>, ascending<span class="op">=</span><span class="va">False</span>))</span>
+<span id="cb16-2"><a href=""></a><span class="bu">print</span>(df.groupby(<span class="st">"name"</span>)[<span class="st">"math"</span>].mean())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   name  math  english  science  total
-3  Dayo    95       52       96    243
-1  Bola    79       80       69    228
-0   Ali    63       63       77    203
-4  Ella    70       56       72    198
-2   Chi    63       66       61    190
+3  Dayo    86       74       81    241
+4  Ella    96       78       62    236
+1  Bola    81       94       60    235
+0   Ali    73       54       64    191
+2   Chi    63       61       66    190
 name
-Ali     63.0
-Bola    79.0
+Ali     73.0
+Bola    81.0
 Chi     63.0
-Dayo    95.0
-Ella    70.0
+Dayo    86.0
+Ella    96.0
 Name: math, dtype: float64</code></pre>
 </div>
 </div>
 </section>
 <section id="plotting-with-pandas" class="slide level2 scrollable">
 <h2>Plotting with Pandas</h2>
-<div id="aff26b66" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href=""></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb19-2"><a href=""></a></span>
-<span id="cb19-3"><a href=""></a>df.set_index(<span class="st">"name"</span>)[[<span class="st">"math"</span>, <span class="st">"english"</span>, <span class="st">"science"</span>]].plot(kind<span class="op">=</span><span class="st">"bar"</span>)</span>
-<span id="cb19-4"><a href=""></a>plt.title(<span class="st">"Scores by Subject"</span>)</span>
-<span id="cb19-5"><a href=""></a>plt.ylabel(<span class="st">"Score"</span>)</span>
-<span id="cb19-6"><a href=""></a>plt.xticks(rotation<span class="op">=</span><span class="dv">45</span>)</span>
-<span id="cb19-7"><a href=""></a>plt.tight_layout()</span>
-<span id="cb19-8"><a href=""></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="302b96b9" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href=""></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb18-2"><a href=""></a></span>
+<span id="cb18-3"><a href=""></a>df.set_index(<span class="st">"name"</span>)[[<span class="st">"math"</span>, <span class="st">"english"</span>, <span class="st">"science"</span>]].plot(kind<span class="op">=</span><span class="st">"bar"</span>)</span>
+<span id="cb18-4"><a href=""></a>plt.title(<span class="st">"Scores by Subject"</span>)</span>
+<span id="cb18-5"><a href=""></a>plt.ylabel(<span class="st">"Score"</span>)</span>
+<span id="cb18-6"><a href=""></a>plt.xticks(rotation<span class="op">=</span><span class="dv">45</span>)</span>
+<span id="cb18-7"><a href=""></a>plt.tight_layout()</span>
+<span id="cb18-8"><a href=""></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="index_files/figure-revealjs/cell-11-output-1.png" width="950" height="470"></p>
+<p><img data-src="index_files/figure-revealjs/cell-12-output-1.png" width="950" height="470"></p>
 </figure>
 </div>
 </div>
