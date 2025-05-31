@@ -1,0 +1,4 @@
+- source: index.qmd
+  quarto-pub:
+    - id: 24c3a1a3-f9c6-4f9f-8b41-5e54f2d3335c
+      url: https://lukmanaj.quarto.pub/transforming-pharmacy-operations-in-nigeria-through-ai-integration

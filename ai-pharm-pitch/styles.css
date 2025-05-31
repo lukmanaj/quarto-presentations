@@ -1,0 +1,64 @@
+/* Custom styles for your Reveal.js presentation */
+
+/* General text color */
+.reveal {
+  color: #333;
+}
+
+/* Slide backgrounds */
+.reveal .slides section {
+  background-color: #f8f8f8; /* Light background */
+}
+
+/* Headings */
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+  color: #2c3e50; /* Darker heading color */
+  text-transform: none; /* No uppercase for headings */
+  font-weight: 600;
+}
+
+/* Stronger emphasis for key points */
+.reveal strong {
+  color: #e67e22; /* Orange for emphasis */
+}
+
+/* Bullet points */
+.reveal ul li {
+  margin-bottom: 0.5em;
+}
+
+/* Adjust image widths if needed for better fit */
+.reveal img {
+  max-width: 95%;
+  max-height: 700px; /* Adjust as needed */
+  border-radius: 8px; /* Slightly rounded corners for images */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Subtle shadow for images */
+}
+
+/* Notes section styling */
+.reveal .slide-notes {
+  font-size: 0.9em;
+  color: #666;
+}
+
+/* Centering for elements */
+.reveal .center-text {
+  text-align: center;
+}
+
+/* Specific styling for columns layout if desired */
+.reveal .columns {
+  display: flex;
+  align-items: center; /* Vertically align content in columns */
+  justify-content: space-around;
+}
+
+.reveal .columns .column {
+  flex: 1;
+  padding: 0 20px;
+}

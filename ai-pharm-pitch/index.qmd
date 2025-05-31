@@ -1,0 +1,181 @@
+---
+title: "Transforming Pharmacy Operations in Nigeria through AI Integration"
+subtitle: "Leveraging AI for Smarter Workflows, Enhanced Access, and Data-Driven Patient Care"
+author: "Lukman Jibril Aliyu"
+format:
+  revealjs:
+    theme: default
+    css: styles.css
+    transition: slide
+    background-transition: fade
+    slide-number: true
+    show-slide-number: all
+    center: true
+    width: 1600
+    height: 900
+editor: visual
+---
+
+## Introduction: The Nigerian Healthcare Landscape & AI's Promise
+
+### Fragmented Data, Limited Infrastructure, Erratic Power.
+- **Challenge:** How do we deliver equitable and efficient pharmacy care across Nigeria?
+- **Opportunity:** Artificial Intelligence (AI) offers a powerful, practical solution.
+- **Vision:** Reimagining pharmacy operations to enable smarter workflows, enhance medication access, and support data-driven patient care, *despite* systemic constraints.
+
+---
+
+## The Core Problem: Inefficiencies in Pharmacy Operations
+
+- **Stockouts & Wastage:** Manual tracking, inaccurate forecasting leading to vital medicine shortages.
+- **Suboptimal Patient Care:** Generic recommendations, limited access to critical drug information.
+- **Resource Strain:** Overburdened pharmacists, time-consuming manual record reviews.
+- **Affordability Barriers:** Patients unable to access vital medications due to cost.
+
+![Core Problems](images/problem-visual.png){width=80%}
+
+---
+
+## AI as the Catalyst: Key Opportunities
+
+### AI Integration: Enabling Smarter, More Resilient Pharmacy Operations
+
+![AI Integration](images/ai-integration-visual.png){width=85%}
+
+---
+
+## Opportunity 1: Intelligent Inventory & Procurement
+
+### From Guesswork to Precision: Automated Data Collection, Forecasting & Procurement
+
+::: columns
+::: column
+- **Current State:** Inefficient, reactive, prone to errors.
+- **AI Solution:** Real-time data collection, ML-based forecasting, automated procurement.
+- **Impact:** Reduce stockouts by 20–30%, minimize wastage, and improve resilience.
+:::
+
+::: column
+![Inventory Forecast](images/inventory-forecast.png){width=100%}
+:::
+:::
+
+---
+
+## Opportunity 2: Context-Aware, Personalized Medication Recommendations
+
+### Balancing Clinical Effectiveness with Local Realities
+
+::: columns
+::: column
+- AI-powered decision support tools.
+- Factors in patient history, comorbidities, and local drug availability.
+- Improves adherence, access, and outcomes.
+:::
+
+::: column
+![Personalized RX](images/personalized-rx.png){width=100%}
+:::
+:::
+
+---
+
+## Opportunity 3: AI for Rapid Case Review & Affordability
+
+### Enhancing Access and Streamlining Workflows
+
+::: columns
+::: column
+- **NLP for Case Review:** Speeds up interventions in overburdened settings.
+- **Predictive Affordability Profiling:** Suggests affordable options and links patients to aid.
+- **Privacy:** Emphasizes anonymization and equity.
+:::
+
+::: column
+![NLP Affordability](images/nlp-affordability.png){width=100%}
+:::
+:::
+---
+
+## Opportunity 4: Intelligent Drug Information & Education
+
+### Empowering Pharmacists, Nurturing Future Talent
+
+::: columns
+::: column
+- **Drug Information:** AI chatbots, offline access for resilience.
+- **Pharmacy Education:** Adaptive learning platforms and simulations.
+- **Outcome:** AI-literate, better-informed professionals.
+:::
+
+::: column
+![Education Info](images/education-info.png){width=100%}
+:::
+:::
+
+---
+
+## Addressing Practicalities: Implementation in Nigeria
+
+### Phased, Resilient Roadmap
+
+- Modular deployments and pilot programs.
+- Offline-first, open-source, and locally developed tools.
+- Privacy by design: NDPR-compliant governance.
+- Capacity building and partnerships with PCN, PSN-YPG, tech hubs.
+
+![Implementation Roadmap](images/implementation-roadmap.png){width=80%}
+
+---
+
+## Ethical & Regulatory Considerations: Our Commitment
+
+### Fair, Transparent, and Accountable AI
+
+- **Fairness & Bias Mitigation**
+- **Transparency & Explainability**
+- **Data Ownership & Consent**
+- **Regulatory Alignment:** PCN, NITDA, WHO
+- **Human Oversight:** AI supports, not replaces pharmacists.
+
+![Ethics Compliance](images/ethics-compliance.png){width=80%}
+
+---
+
+## Why This Matters: The Vision for Nigerian Pharmacy
+
+### Modernizing, Localizing, and Humanizing Care
+
+- **Predictive:** Accurate demand and patient need forecasting.
+- **Personalized:** Tailored therapies and better outcomes.
+- **Patient-Centered:** Safer, more equitable care.
+- **Resilient:** Adapted for Nigeria’s unique infrastructure.
+
+![Vision](images/nigeria-vision.png){width=80%}
+
+
+---
+
+## Conclusion: Let's Build the Future of Pharmacy in Nigeria
+
+### Lukman Jibril Aliyu - Empowering a Healthier Nigeria with AI
+
+- AI is not a distant dream – it's a practical, ethical, and scalable necessity.
+- A clear path exists for transforming pharmacy operations.
+- Let’s collaborate to realize this vision.
+
+**Thank You. Questions?**
+
+---
+
+## About the Presenter
+
+### Lukman Jibril Aliyu 
+- Pharmacist | AI & Healthcare Researcher  
+- Fulfillment Operations Professional and Customer Experience Advocate, Zipline  
+- Mentor, DeepLearning.AI | Mentor, Arewa Data Science Academy  
+- 🌐 [webpage](https://lukmanaj.github.io)  
+- 📧 lukman.j.aliyu@gmail.com  
+- 🔗 [LinkedIn](https://linkedin.com/in/lukman-a-j)
+
+---
