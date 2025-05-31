@@ -2,6 +2,7 @@
 title: "Transforming Pharmacy Operations in Nigeria through AI Integration"
 subtitle: "Leveraging AI for Smarter Workflows, Enhanced Access, and Data-Driven Patient Care"
 author: "Lukman Jibril Aliyu"
+date: "2025-05-31"
 format:
   revealjs:
     theme: default
@@ -122,7 +123,7 @@ editor: visual
 - Modular deployments and pilot programs.
 - Offline-first, open-source, and locally developed tools.
 - Privacy by design: NDPR-compliant governance.
-- Capacity building and partnerships with PCN, PSN-YPG, tech hubs.
+- Capacity building and partnerships with PCN, PSN-YPG, NDPC, tech hubs.
 
 ![Implementation Roadmap](images/implementation-roadmap.png){width=80%}
 
@@ -135,7 +136,7 @@ editor: visual
 - **Fairness & Bias Mitigation**
 - **Transparency & Explainability**
 - **Data Ownership & Consent**
-- **Regulatory Alignment:** PCN, NITDA, WHO
+- **Regulatory Alignment:** PCN, NITDA, NDPC, WHO
 - **Human Oversight:** AI supports, not replaces pharmacists.
 
 ![Ethics Compliance](images/ethics-compliance.png){width=80%}
