@@ -1,0 +1,4 @@
+- source: index.qmd
+  quarto-pub:
+    - id: 3101476e-f612-4878-9708-6e3b8b17d424
+      url: https://lukmanaj.quarto.pub/trends-in-ssri-prescribing-uk

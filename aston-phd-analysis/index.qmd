@@ -1,0 +1,494 @@
+---
+title: "Trends in SSRI Prescribing"
+subtitle: "Analysis of volumes, costs and patterns (June 2020 – May 2025)"
+author: "Lukman J Aliyu"
+date: 2025-08-15
+format:
+  revealjs:
+    theme: solarized
+    slide-number: true
+    transition: fade
+    background-transition: fade
+    fig-align: center
+    code-line-numbers: false
+    chalkboard: false
+execute:
+  echo: false
+  warning: false
+  message: false
+freeze: true
+---
+
+<!--
+This presentation uses NHS OpenPrescribing data to analyse SSRI prescribing trends across England
+between June 2020 and May 2025. It features volume, cost, and regional patterns and is designed
+to impress an academic panel with clean visuals, a pastel theme, and dynamic Plotly charts.
+-->
+
+## {background-image="images/abstract_network.png"}
+
+::: {.absolute style="top:30%;left:5%;width:60%"}
+### Trends in SSRI prescribing
+
+**Exploring volumes, costs & patterns across England**
+
+<br>
+
+<span style="font-size:0.9em; color:#555;">June 2020 – May 2025</span>
+:::
+
+---
+
+## Introduction & Context
+
+::: {.columns}
+::: {.column width="65%"}
+### Key Context
+
+- SSRIs are first-line treatment for depression/anxiety due to favourable safety profiles
+- Prescribing surged in 2020 with the COVID-19 pandemic
+- Cost tripled, largely due to sertraline API shortages
+- Over 93% of pharmacists reported persistent supply issues
+:::
+
+::: {.column width="35%"}
+![](images/mental_health_art.png){fig-align="center" width="100%"}
+:::
+:::
+
+---
+
+## Data & Methods
+
+- **Source**: NHS OpenPrescribing monthly data (Jun 2020 – May 2025)
+- **SSRIs**: Citalopram (both salt forms), escitalopram, fluoxetine, paroxetine, sertraline
+- **Metrics**: Items, quantity, actual cost
+- **Processing**: Grouped citalopram, added cost-per-item, aggregated by drug/month/region
+
+```{python}
+import requests
+import pandas as pd
+from io import StringIO
+import plotly.express as px
+
+bnf_codes = {
+    'citalopram_hydrobromide': '0403030D0',
+    'citalopram_hydrochloride': '0403030Z0',
+    'fluoxetine': '0403030E0',
+    'paroxetine': '0403030P0',
+    'sertraline': '0403030Q0',
+    'escitalopram': '0403030X0'
+}
+
+def fetch_prescribing_data(bnf_code):
+    url = f"https://openprescribing.net/api/1.0/spending.csv?code={bnf_code}&format=csv"
+    df = pd.read_csv(StringIO(requests.get(url).text))
+    df['date'] = pd.to_datetime(df['date'])
+    return df[df['date'] >= '2020-06-01']
+
+def fetch_prescribing_data_region(bnf_code):
+    url = f"https://openprescribing.net/api/1.0/spending_by_org.csv?org_type=regional_team&code={bnf_code}&format=csv"
+    df = pd.read_csv(StringIO(requests.get(url).text))
+    df['date'] = pd.to_datetime(df['date'])
+    return df[df['date'] >= '2020-06-01']
+
+frames = []
+ssri_frames_region = []
+for name, code in bnf_codes.items():
+    df = fetch_prescribing_data(code)
+    df['drug'] = name
+    df['cost_per_item'] = df['actual_cost'] / df['items']
+    frames.append(df)
+
+    r_df = fetch_prescribing_data_region(code)
+    r_df['drug'] = name
+    ssri_frames_region.append(r_df)
+
+all_ssri_data = pd.concat(frames)
+all_ssri_data_region = pd.concat(ssri_frames_region)
+
+# Combine citalopram variants
+all_ssri_data['drug_combined'] = all_ssri_data['drug'].replace({
+    'citalopram_hydrobromide': 'citalopram',
+    'citalopram_hydrochloride': 'citalopram'
+})
+all_ssri_data_region['drug_combined'] = all_ssri_data_region['drug'].replace({
+    'citalopram_hydrobromide': 'citalopram',
+    'citalopram_hydrochloride': 'citalopram'
+})
+
+# Summary
+df_summary = all_ssri_data.groupby('drug_combined').agg(
+    items=('items', 'sum'), cost=('actual_cost', 'sum')).reset_index()
+df_summary['cost_per_item'] = df_summary['cost'] / df_summary['items']
+df_summary['items_millions'] = df_summary['items'] / 1e6
+df_summary['cost_millions'] = df_summary['cost'] / 1e6
+
+# Aggregate by month for time series
+ssri_totals = all_ssri_data.groupby('date').agg(items=('items','sum'), actual_cost=('actual_cost','sum')).reset_index()
+antidepressants_df = fetch_prescribing_data('0403')
+agg_antidepressants = antidepressants_df.groupby('date').agg(items=('items','sum'), actual_cost=('actual_cost','sum')).reset_index()
+
+# Compute regional share of items across all SSRIs
+df_regions = all_ssri_data_region.groupby('row_name').agg(
+    items=('items','sum')
+).reset_index()
+df_regions['share'] = 100 * df_regions['items'] / df_regions['items'].sum()
+df_regions = df_regions.sort_values('share', ascending=False).reset_index(drop=True)
+
+```
+
+---
+
+## Summary Table
+
+```{python}
+df_display = df_summary[['drug_combined','items_millions','cost_millions','cost_per_item']]
+df_display.columns = ['Drug','Items (M)','Cost (£M)','Cost per item (£)']
+df_display.round({'Items (M)':1,'Cost (£M)':1,'Cost per item (£)':2})
+```
+
+---
+
+## Volumes & Costs by Drug
+
+::: {.columns}
+::: {.column width="50%"}
+```{python}
+fig_items = px.bar(df_summary, x='drug_combined', y='items_millions',
+                   color='drug_combined', title='Items by SSRI',
+                   labels={'items_millions': 'Items (millions)', 'drug_combined': 'Drug'})
+fig_items.update_layout(showlegend=False, height=400)
+fig_items.show()
+```
+:::
+
+::: {.column width="50%"}
+```{python}
+fig_cost = px.bar(df_summary, x='drug_combined', y='cost_millions',
+                  color='drug_combined', title='Cost by SSRI',
+                  labels={'cost_millions': 'Cost (£ millions)', 'drug_combined': 'Drug'})
+fig_cost.update_layout(showlegend=False, height=400)
+fig_cost.show()
+```
+:::
+:::
+
+---
+
+## Cost Efficiency ScatterPlot
+
+```{python}
+df_plot = df_summary.copy()
+df_plot['Share (%)'] = 100 * df_plot['items'] / df_plot['items'].sum()
+df_plot['Cost per item (£)'] = df_plot['cost'] / df_plot['items']
+fig = px.scatter(df_plot, x='Share (%)', y='Cost per item (£)', color='drug_combined',
+                 size='cost_millions', text='drug_combined', title='Cost vs Volume Share')
+fig.update_traces(textposition='top center')
+fig.update_layout(showlegend=False, height=450)
+fig.show()
+```
+
+---
+
+## Time Series Trends
+
+::: {.columns}
+::: {.column width="50%"}
+```{python}
+# Step 1: Combine and group upfront
+df_line = all_ssri_data.copy()
+df_line['drug_combined'] = df_line['drug'].replace({
+    'citalopram_hydrobromide': 'citalopram',
+    'citalopram_hydrochloride': 'citalopram'
+})
+
+# Step 2: Group by month and drug
+df_grouped = (
+    df_line.groupby(['date', 'drug_combined'])[['items', 'actual_cost']]
+    .sum()
+    .reset_index()
+)
+df_grouped['items_millions'] = df_grouped['items'] / 1e6
+df_grouped['cost_millions'] = df_grouped['actual_cost'] / 1e6
+
+# Step 3: Clean missing values (optional but safe)
+df_grouped = df_grouped.fillna(0)
+
+# Step 4: Plot clean time series
+fig_items = px.line(
+    df_grouped,
+    x='date',
+    y='items_millions',
+    color='drug_combined',
+    title='Monthly SSRI Items Dispensed',
+    labels={'items_millions': 'Items (M)', 'drug_combined': 'Drug'},
+    color_discrete_sequence=['#79A7C5','#B7CDE4','#7EBF88','#F2C57C','#9A79B1']
+)
+fig_items.update_layout(height=400)
+fig_items.show()
+
+
+```
+:::
+::: {.column width="50%"}
+```{python}
+fig_costs = px.line(
+    df_grouped,
+    x='date',
+    y='cost_millions',
+    color='drug_combined',
+    title='Monthly SSRI Costs (£M)',
+    labels={'cost_millions': 'Cost (£M)', 'drug_combined': 'Drug'},
+    color_discrete_sequence=['#79A7C5','#B7CDE4','#7EBF88','#F2C57C','#9A79B1']
+)
+fig_costs.update_layout(height=400)
+fig_costs.show()
+
+```
+:::
+:::
+
+---
+
+## SSRIs vs All Antidepressants {.scrollable}
+
+```{python}
+# Step 1: Label groups
+ssri_totals['Group'] = 'SSRIs'
+agg_antidepressants['Group'] = 'All antidepressants'
+
+# Step 2: Combine both datasets
+df_compare_raw = pd.concat([
+    ssri_totals[['date', 'items', 'Group']],
+    agg_antidepressants[['date', 'items', 'Group']]
+])
+
+# Step 3: Create full timeline
+all_dates = pd.date_range(start=df_compare_raw['date'].min(),
+                          end=df_compare_raw['date'].max(),
+                          freq='MS')
+all_groups = df_compare_raw['Group'].unique()
+
+# Step 4: Create a complete date-group grid
+index = pd.MultiIndex.from_product([all_dates, all_groups], names=['date', 'Group'])
+
+# Step 5: Reindex and fill missing values
+df_compare = df_compare_raw.set_index(['date', 'Group']).reindex(index, fill_value=0).reset_index()
+
+# Step 6: Group again to ensure clean monthly sums (optional safety step)
+df_compare_grouped = df_compare.groupby(['date', 'Group'])['items'].sum().reset_index()
+
+# Step 7: Add metrics
+df_compare_grouped['items_millions'] = df_compare_grouped['items'] / 1e6
+
+# Step 8: Plot
+fig_compare = px.line(
+    df_compare_grouped,
+    x='date',
+    y='items_millions',
+    color='Group',
+    title='SSRIs vs All Antidepressants: Monthly Items Dispensed',
+    labels={'items_millions': 'Items (M)', 'date': 'Month'}
+)
+fig_compare.update_layout(height=400)
+fig_compare.show()
+
+```
+## SSRIs vs All Antidepressants Trend over time
+
+::: {.columns}
+::: {.column width="50%"}
+```{python}
+# Determine start and end dates of the period
+start_date = pd.to_datetime('2020-06-01')
+end_date = all_ssri_data['date'].max()
+
+# Compute start and end values for SSRIs
+ssri_start_items = ssri_totals.loc[ssri_totals['date'] == start_date, 'items'].sum() / 1e6
+ssri_end_items = ssri_totals.loc[ssri_totals['date'] == end_date, 'items'].sum() / 1e6
+ssri_start_cost = ssri_totals.loc[ssri_totals['date'] == start_date, 'actual_cost'].sum() / 1e6
+ssri_end_cost = ssri_totals.loc[ssri_totals['date'] == end_date, 'actual_cost'].sum() / 1e6
+
+# Compute start and end values for all antidepressants
+ant_start_items = agg_antidepressants.loc[agg_antidepressants['date'] == start_date, 'items'].sum() / 1e6
+ant_end_items = agg_antidepressants.loc[agg_antidepressants['date'] == end_date, 'items'].sum() / 1e6
+ant_start_cost = agg_antidepressants.loc[agg_antidepressants['date'] == start_date, 'actual_cost'].sum() / 1e6
+ant_end_cost = agg_antidepressants.loc[agg_antidepressants['date'] == end_date, 'actual_cost'].sum() / 1e6
+
+df_compare_items = pd.DataFrame({
+    'Group': ['SSRIs','SSRIs','All antidepressants','All antidepressants'],
+    'Period': ['Start','End','Start','End'],
+    'Items (M)': [ssri_start_items, ssri_end_items, ant_start_items, ant_end_items]
+})
+
+fig_items_comp = px.bar(df_compare_items, x='Period', y='Items (M)',
+                        color='Group', barmode='group',
+                        title='Prescription items: SSRIs vs all antidepressants',
+                        color_discrete_sequence=['#79A7C5','#9A79B1'])
+fig_items_comp.update_layout(xaxis_title='', yaxis_title='Items (millions)',
+                             title_font=dict(size=14),
+                             height=350)
+fig_items_comp.show()
+```
+:::
+
+::: {.column width="50%"}
+```{python}
+df_compare_cost = pd.DataFrame({
+    'Group': ['SSRIs','SSRIs','All antidepressants','All antidepressants'],
+    'Period': ['Start','End','Start','End'],
+    'Cost (M)': [ssri_start_cost, ssri_end_cost, ant_start_cost, ant_end_cost]
+})
+
+fig_cost_comp = px.bar(df_compare_cost, x='Period', y='Cost (M)',
+                       color='Group', barmode='group',
+                       title='Actual cost: SSRIs vs all antidepressants',
+                       color_discrete_sequence=['#79A7C5','#9A79B1'])
+fig_cost_comp.update_layout(xaxis_title='', yaxis_title='Cost (£ millions)',
+                            title_font=dict(size=14),
+                            height=350)
+fig_cost_comp.show()
+```
+:::
+:::
+
+---
+
+## Regional Time Series Trends {.scrollable}
+
+```{python}
+# Step 1: Prepare region data and convert to millions
+df_region = all_ssri_data_region.copy()
+df_region['items_millions'] = df_region['items'] / 1e6
+
+# Step 2: Identify top 3 regions by total items
+top_regions = (
+    df_region.groupby('row_name')['items']
+    .sum()
+    .nlargest(3)
+    .index.tolist()
+)
+
+# Step 3: Filter only top regions
+df_top = df_region[df_region['row_name'].isin(top_regions)].copy()
+
+# Step 4: Create a complete date-region grid
+all_dates = pd.date_range(df_top['date'].min(), df_top['date'].max(), freq='MS')
+index = pd.MultiIndex.from_product([all_dates, top_regions], names=['date', 'row_name'])
+
+# Step 5: Reindex to fill gaps
+df_top_grouped = (
+    df_top
+    .groupby(['date', 'row_name'])['items_millions']
+    .sum()
+    .reindex(index, fill_value=0)
+    .reset_index()
+)
+
+# Step 6: Plot clean time series
+fig_reg = px.line(
+    df_top_grouped,
+    x='date',
+    y='items_millions',
+    color='row_name',
+    title='Top 3 Regions: Monthly SSRI Items',
+    labels={'items_millions':'Items (M)', 'row_name':'Region'},
+    color_discrete_sequence=['#79A7C5','#9A79B1','#E28A8A']
+)
+fig_reg.update_layout(height=450)
+fig_reg.show()
+
+```
+
+```{python}
+# # Use region share computed from the API data
+df_plot_regions = df_regions.copy()
+df_plot_regions = df_plot_regions.rename(columns={'row_name':'Region','share':'Share (%)'})
+
+# Step 1: Define short labels
+region_label_map = {
+    'MIDLANDS COMMISSIONING REGION': 'Midlands',
+    'NORTH EAST AND YORKSHIRE COMMISSIONING REGION': 'NE & Yorkshire',
+    'NORTH WEST COMMISSIONING REGION': 'North West',
+    'SOUTH EAST COMMISSIONING REGION': 'South East',
+    'SOUTH WEST COMMISSIONING REGION': 'South West',
+    'EAST OF ENGLAND COMMISSIONING REGION': 'East of England',
+    'LONDON COMMISSIONING REGION': 'London'
+}
+
+# Step 2: Apply to your DataFrame
+df_plot_regions['Region Short'] = df_plot_regions['Region'].map(region_label_map)
+
+# Step 3: Plot using short names
+fig_regions = px.bar(
+    df_plot_regions,
+    x='Region Short',
+    y='Share (%)',
+    title='Share of SSRI Items by Region',
+    color='Region Short',
+    color_discrete_sequence=px.colors.qualitative.Pastel
+)
+
+fig_regions.update_layout(
+    xaxis_title='Region',
+    yaxis_title='Items (%)',
+    showlegend=False,
+    height=400
+)
+fig_regions.show()
+
+
+```
+
+---
+
+## Conclusions & Recommendations
+
+### Summary:
+- SSRI prescribing grew 20%; costs dropped 70%
+- Sertraline is the dominant SSRI by volume and cost
+- Citalopram is the most cost-efficient
+- Cost efficiency improved post-pandemic due to supply recovery
+
+### Recommendations:
+- Diversify supply chains and API sourcing
+- Monitor regional variation for tailored planning
+- Improve forecasting and mental health funding
+
+---
+
+---
+
+## Statistical Tests & Interpretation
+
+::: {.columns}
+::: {.column width="50%"}
+### 1. **ANOVA: Items Across SSRIs**
+- **F(4, N) = 257.51, p < 0.0001**
+- Strong evidence that mean monthly items differ significantly between SSRIs.
+- **Tukey HSD Post-hoc**:
+  - **Significant**: Most pairs differ, e.g. sertraline > all others; citalopram > paroxetine & escitalopram.
+  - **Non-significant**: citalopram vs fluoxetine, escitalopram vs paroxetine.
+:::
+
+::: {.column width="50%"}
+### 2. **Chi-square: Region × Drug**
+- **χ²(24) = 1,764,865.90, p < 0.0001**
+- **Cramér’s V = 0.044** → very small association.
+- Interpretation: Regional variation in drug preference exists statistically, but is minimal in practice.
+:::
+:::
+
+---
+
+### Implications:
+- Sertraline’s dominance is both statistically and practically significant.
+- Minimal region–drug association → prescribing patterns are broadly consistent across England.
+- Focus interventions on drug-level cost and supply, not region-specific changes.
+
+
+---
+
+## Thank You
+
